@@ -1,0 +1,127 @@
+Given a time in 12-hr AM/PM format, convert it to military time(24hr) and you also need to add 45
+min &45 sec in the result and the display the output.
+E.g.: - Input – 12:01:00PM Output 12:46:45
+Input – 12:01:00AM Output 00:46:45
+
+
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="">
+  <meta name="viewport" content="width=, initial-scale=">
+  <title></title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+// javascript program to convert 12 hour
+// format to 24 hour format
+
+
+function print24(str)
+{
+	// Get hours
+	var h1 = Number(str[1] - '0');
+	var h2 = Number(str[0] - '0');
+	var hh = (h2 * 10 + h1 % 10);
+
+	// If time is in "AM"
+	if (str[8] == 'A')
+	{
+		if (hh == 12)
+		{
+			document.write("00");
+			for (var i = 2; i <= 7; i++)
+				document.write(str[i]);
+		}
+		else
+		{
+			for (var i = 0; i <= 7; i++)
+				document.write(str[i]);
+		}
+	}
+
+	// If time is in "PM"
+	else
+	{
+		if (hh == 12)
+		{
+			document.write("12");
+			for (var i = 2; i <= 7; i++)
+				document.write(str[i]);
+		}
+		else
+		{
+			hh = hh + 12;
+			document.write(hh);
+			for (var i = 2; i <= 7; i++)
+				document.write(str[i]);
+		}
+	}
+}
+
+// Driver code
+
+	var str = "07:05:20AM";
+	print24(str);
+
+
+</script>
+
+
+// 1st Given an array of bird where every element represents a bird type id, determine the ids of the most
+frequently and least frequently sighted type. If more than 1 type has been spotted that maximum
+amount, return the smallest of their ids & If more than 1 type has been spotted that minimum amount,
+return the smallest of their ids.
+E.g.: - Input – [1,1,2,2,4,4,4,4,5] Output – [4, 5]
+Input – [2,2,2,2,4,4,4,4,5] Output – [2, 5]
+Input – [1,2,2,4,4,4,4,5] Output – [4, 1 // 
+
+
+
+process.stdin.resume();
+process.stdin.setEncoding('ascii');
+
+var input_stdin = "";
+var input_stdin_array = "";
+var input_currentline = 0;
+
+process.stdin.on('data', function (data) {
+    input_stdin += data;
+});
+
+process.stdin.on('end', function () {
+    input_stdin_array = input_stdin.split("\n");
+    main();    
+});
+
+function readLine() {
+    return input_stdin_array[input_currentline++];
+}
+
+/////////////// ignore above this line ////////////////////
+
+function main() {
+  var counts = {};  
+  var max = 0;
+  var maxKey;
+  var n = parseInt(readLine());
+    types = readLine().split(' ');
+    types = types.map(Number);
+    // your code goes here
+    for (var i = 0; i < types.length; i++) {
+      if (counts[types[i]]) counts[types[i]] += 1;
+      else counts[types[i]] = 1;
+    }  
+    for (key in counts) {
+      if (counts[key] > max) {
+        max = counts[key];
+        maxKey = key;
+      }
+    }
+  console.log(parseInt(maxKey))
+}
+
